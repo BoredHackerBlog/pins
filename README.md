@@ -61,6 +61,8 @@ setup.sh sets up nodered node-red-node-tail module so you can tail eve.json file
 - custom rules can be added to custom.rules file. Re rule SIDs: https://doc.emergingthreats.net/bin/view/Main/SidAllocation
 - file extraction documentation and examples: https://suricata.readthedocs.io/en/suricata-6.0.0/file-extraction/file-extraction.html https://fossies.org/linux/suricata/rules/files.rules 
 - cron jobs and scheduled tasks you may wanna add: you may want to add cron task that runs docker exec then uses suricatactl to prune files, you'll also want to do the same for rule updates, docker exec documentation: https://docs.docker.com/engine/reference/commandline/exec/
+- edit disable.conf to disable certain rules, https://suricata.readthedocs.io/en/suricata-6.0.0/rule-management/suricata-update.html#controlling-which-rules-are-used
+- test to see if everything is working by visiting boredhackerblog.info or running `curl boredhackerblog.info`, you should get an alert titled "Custom DNS rule - boredhackerblog"
 
 # Warning
 You will have to make some changes yourself for this project to be useful

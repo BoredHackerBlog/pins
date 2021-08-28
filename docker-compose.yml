@@ -1,0 +1,35 @@
+version: "3.9"
+
+services:
+  suricata:
+    container_name: suricata
+    image: jasonish/suricata:latest
+    network_mode: "host"
+    cap_add:
+      - NET_ADMIN
+      - SYS_NICE
+    command: -i eth0
+    volumes:
+      - ./suricata/var/log/suricata:/var/log/suricata
+      - ./suricata/var/lib/suricata:/var/lib/suricata
+      - ./suricata/etc/suricata:/etc/suricata
+
+  evebox:
+    container_name: evebox
+    image: jasonish/evebox:latest
+    ports:
+      - "5636:5636"
+    command: -D /evebox/ --datastore sqlite --input /var/log/suricata/eve.json
+    volumes:
+      - ./suricata/var/log/suricata:/var/log/suricata:ro
+      - ./evebox:/evebox
+
+  nodered:
+    container_name: nodered
+    image: nodered/node-red
+    ports:
+      - "1880:1880"
+    volumes:
+      - ./nodered:/data
+      - ./suricata/var/log/suricata:/var/log/suricata:ro
+

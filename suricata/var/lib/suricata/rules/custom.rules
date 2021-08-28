@@ -1,0 +1,1 @@
+alert dns any any -> any any (msg:"Custom DNS rule - boredhackerblog"; dns.query; content:"boredhackerblog"; nocase; sid:1000001;)

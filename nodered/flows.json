@@ -1,0 +1,83 @@
+[
+    {
+        "id": "1b0cf5fe54758734",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "c33ba24ad9d73e4e",
+        "type": "tail",
+        "z": "1b0cf5fe54758734",
+        "name": "",
+        "filetype": "text",
+        "split": "[\\r]{0,1}\\n",
+        "filename": "/var/log/suricata/eve.json",
+        "inputs": 0,
+        "x": 220,
+        "y": 340,
+        "wires": [
+            [
+                "a768c20b873e3ebd"
+            ]
+        ]
+    },
+    {
+        "id": "6d428f09838f7767",
+        "type": "switch",
+        "z": "1b0cf5fe54758734",
+        "name": "",
+        "property": "payload.event_type",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "alert",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 630,
+        "y": 340,
+        "wires": [
+            [
+                "3c03803304f1da5f"
+            ]
+        ]
+    },
+    {
+        "id": "a768c20b873e3ebd",
+        "type": "json",
+        "z": "1b0cf5fe54758734",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 450,
+        "y": 340,
+        "wires": [
+            [
+                "6d428f09838f7767"
+            ]
+        ]
+    },
+    {
+        "id": "3c03803304f1da5f",
+        "type": "debug",
+        "z": "1b0cf5fe54758734",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 850,
+        "y": 340,
+        "wires": []
+    }
+]
