@@ -36,10 +36,30 @@ I modified the suricata config file
 - nodered mounts suricata log directory in read-only mode as well
 
 # Running the project
-- 
+
+## requirements
+- docker / docker-compose (https://dev.to/elalemanyo/how-to-install-docker-and-docker-compose-on-raspberry-pi-1mo)
+- try installing libseccomp 2.5.1-1, if you're running into permission issues for whatever reason (https://stackoverflow.com/a/67085069 wget way works fine)
+- git
+
+## setup
+- make sure you setup port mirroring on your switch and connect the mirrored port to the pi (see diagram under "Network - Network Monitoring" section here: https://boredhackerblog.github.io/homelabsecuritymonitoring/
+- connect to the pi via wifi or another port
+- setup eth0 to sniff, see slides 15 to 18 (just do ethtool on slide 18) here https://www.activecountermeasures.com/raspberry_pi_sensor/How%20to%20use%20a%20Raspberry%20Pi%20as%20a%20network%20sensor.pdf -- essentialy, you wanna make sure eth0 is on promiscuous mode and is not getting an IP. you may have to do some research if the slides didn't help
+- git clone this repo
+- cd into pins directory, chmod +x setup.sh
+- run ./setup.sh, you only need to do this once
+
+setup.sh sets up nodered node-red-node-tail module so you can tail eve.json file. it also sets up rules for suricata.
 
 # Usage
-- 
+- general docker-compose commands apply here. run `docker-compose up -d` to run containers and `docker-compose stop` to stop the containers
+- to access evebox go to http://PI_IP:5636 and to access nodered go to http://PI_IP:1880
+- to manage suricata rules, you can use the docker exec command like shown here: https://github.com/jasonish/docker-suricata#suricata-update
+- suricata-update documentation https://suricata-update.readthedocs.io/en/latest/quickstart.html
+- if you do decide to write custom rules to store files, you can use suricatactl to clean things up from time to time https://suricata.readthedocs.io/en/suricata-6.0.1/manpages/suricatactl-filestore.html
+- file extraction documentation and examples: https://suricata.readthedocs.io/en/suricata-6.0.0/file-extraction/file-extraction.html https://fossies.org/linux/suricata/rules/files.rules 
+- cron jobs and scheduled tasks you may wanna add: you may want to add cron task that runs docker exec then uses suricatactl to prune files, you'll also want to do the same for rule updates, docker exec documentation: https://docs.docker.com/engine/reference/commandline/exec/
 
 # Warning
 You will have to make some changes yourself for this project to be useful
