@@ -58,6 +58,7 @@ setup.sh sets up nodered node-red-node-tail module so you can tail eve.json file
 - to manage suricata rules, you can use the docker exec command like shown here: https://github.com/jasonish/docker-suricata#suricata-update
 - suricata-update documentation https://suricata-update.readthedocs.io/en/latest/quickstart.html
 - if you do decide to write custom rules to store files, you can use suricatactl to clean things up from time to time https://suricata.readthedocs.io/en/suricata-6.0.1/manpages/suricatactl-filestore.html
+- custom rules can be added to custom.rules file. Re rule SIDs: https://doc.emergingthreats.net/bin/view/Main/SidAllocation
 - file extraction documentation and examples: https://suricata.readthedocs.io/en/suricata-6.0.0/file-extraction/file-extraction.html https://fossies.org/linux/suricata/rules/files.rules 
 - cron jobs and scheduled tasks you may wanna add: you may want to add cron task that runs docker exec then uses suricatactl to prune files, you'll also want to do the same for rule updates, docker exec documentation: https://docs.docker.com/engine/reference/commandline/exec/
 
