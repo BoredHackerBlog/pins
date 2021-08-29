@@ -1,7 +1,7 @@
 # pins
 raspberry pi network sensor - uses suricata, evebox, and nodered
 
-I initially compiled suricata and made my own container but then I ended up just using containers (suricata & evebox) by jasonish (https://github.com/jasonish). jasonish's containers were more lightweight and already had some of configuration (logroate, rule management, etc...) that I didn't wanna rework.
+I initially compiled suricata and made my own container but then I ended up just using containers (suricata & evebox) by jasonish (https://github.com/jasonish). jasonish's containers were more lightweight and already had some of configuration (logrotate, rule management, etc...) that I didn't wanna rework.
 
 Since I'm not shipping the log data to a log management system/SIEM, I decided to add nodered and let it process eve.json file. You can setup whatever workflow you want inside nodered. I recommend trying Greynoise Community API https://twitter.com/andrew___morris/status/1375516879351992320 https://docs.greynoise.io/reference/get_v3-community-ip or abuseipdb https://www.abuseipdb.com/ You can also start extracting files and setup nodered to run scripts to do analysis (clamav, yara, capa, etc...)
 
